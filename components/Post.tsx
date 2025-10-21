@@ -10,7 +10,13 @@ type PostProps = {
 
 const Post = ({ friend, image, title, description }: PostProps) => {
   return (
-    <View>
+    <View
+      style={[
+        styles.layout,
+        friend ? styles.friendBackground : styles.defaultBackground,
+        styles.shadow,
+      ]}
+    >
       <Image source={{ uri: image }} style={styles.image} />
       <View style={styles.content}>
         <Text style={styles.title}>{title}</Text>
@@ -26,10 +32,14 @@ const styles = StyleSheet.create({
     marginVertical: 12,
     borderRadius: 16,
     overflow: "hidden",
-    /* Add additional styling below */
+    flex: 1,
   },
-  friendBackground: {},
-  defaultBackground: {},
+  friendBackground: {
+    backgroundColor: "lightgray",
+  },
+  defaultBackground: {
+    backgroundColor: "white",
+  },
   shadow: {
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -46,15 +56,21 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 16,
-    paddingTop: 12,
+    paddingVertical: 8,
+    justifyContent: "center",
+    alignItems: "center",
   },
   title: {
     marginBottom: 6,
-    /* Add additional styling below */
+    fontSize: 16,
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    color: "gray",
   },
   description: {
     lineHeight: 20,
-    /* Add additional styling below */
+    fontSize: 14,
+    color: "gray",
   },
 });
 
